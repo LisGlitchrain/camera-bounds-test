@@ -9,12 +9,6 @@ class SphereTrackingCamera : MonoBehaviour
     Dictionary<GameObject, MeshFilter> meshFilters = new Dictionary<GameObject, MeshFilter>();
     Dictionary<GameObject, Renderer> renderers = new Dictionary<GameObject, Renderer>();
 
-    public List<GameObject> worldSpacePoints;
-    public float minX;
-    public float maxX;
-    public float minY;
-    public float maxY;
-
     public float baseFoV = 60;
     public float spacing = 1.05f;
     float horizontalSpacing;
@@ -31,7 +25,6 @@ class SphereTrackingCamera : MonoBehaviour
             AddRenderer(givenObject);
 
         horizontalSpacing = (spacing - 1) / camera.aspect + 1;
-        Debug.Log($"HOrizontal spacing: {horizontalSpacing}");
 
         SetPanels();
     }
@@ -46,12 +39,9 @@ class SphereTrackingCamera : MonoBehaviour
 
         panels[2].anchorMin = new Vector2(0, (spacing - 1) / 2 / camera.aspect);
         panels[2].anchorMax = new Vector2((horizontalSpacing - 1) / 2 , 1 - (spacing - 1) / 2 / camera.aspect);
-        Debug.Log($"Anchor2: { panels[2].anchorMin}| {panels[2].anchorMax}");
 
         panels[3].anchorMin = new Vector2(1 - (horizontalSpacing - 1) / 2, (spacing - 1) / 2 / camera.aspect);
         panels[3].anchorMax = new Vector2(1f, 1 - (spacing - 1) / 2 / camera.aspect);
-        Debug.Log($"Anchor2: { panels[3].anchorMin}| {panels[3].anchorMax}");
-
 
         foreach (var panel in panels)
         {
